@@ -32,7 +32,8 @@ $(document).ready(function(){
                     tr += '<th>'+personas[i].per_apellido_pat+'</th>';
                     tr += '<th>'+personas[i].per_apellido_mat+'</th>';
                     tr += '<th>'+personas[i].per_fecha_nacimiento+'</th>';
-                    tr += '<th><button class="btn ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button></th>';
+                    tr += '<th><button class="btn btn-default ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button> ';
+                    tr += '<button class="btn btn-info" id="editar-persona" data-toggle="modal" data-target="#modalVer">Editar</button></th>';
                     tr += '</tr>'
                     $('#personas').append(tr);
                 }
@@ -60,6 +61,30 @@ $(document).ready(function(){
                                 $('#prais').val(data.data[0].per_prais);
                                 $('#telefono').val(data.data[0].per_telefono);
                                 $('#correo').val(data.data[0].per_correo);
+                                // pestaña prevision
+                                $.ajax({
+                                    type: "GET",
+                                    url: url_base+"/api/persona/"+idPersona+"/prevision",
+                                    data: { },
+                                    dataType: "json",
+                                    crossDomain: true,
+                                    success: function(data){
+                                        if(data.code == 200){
+                                            $('#rol').val(data.data[0].rol);
+                                            $('#vencimiento_carga').val(data.data[0].vencimiento_carga);
+                                            $('#rut_titular').val(data.data[0].rut_titular);
+                                            $('#nombre_titular').val(data.data[0].nombre_titular);
+                                            $('#appat_titular').val(data.data[0].appat_titular);
+                                            $('#apmat_titular').val(data.data[0].apmat_titular);
+                                            $('#tpr_detalle').val(data.data[0].tpr_detalle);
+                                            $('#pre_nombre').val(data.data[0].pre_nombre);
+                                            $('#vencimiento_prevision').val(data.data[0].vencimiento_prevision);
+                                        }
+                                    },
+                                    failure: function(errMsg) {
+                                        alert(errMsg);
+                                    }
+                                });
                             }
                         },
                         failure: function(errMsg) {

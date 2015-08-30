@@ -68,95 +68,165 @@
           <h4 class="modal-title" id="modalVerLabel">Ver Persona</h4>
         </div>
         <div class="modal-body">
-          <div id="persona-detalle">
-              <form class="form-horizontal disabled">
-                <fieldset disabled>
-                    <div class="form-group">
-                      <label for="rut" class="col-sm-2 control-label">RUT</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="rut" placeholder="RUT sin dígito verificador">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Datos Personales</a></li>
+            <li role="presentation"><a href="#prevision" aria-controls="prevision" role="tab" data-toggle="tab">Prevision</a></li>
+            <li role="presentation"><a href="#vivienda" aria-controls="vivienda" role="tab" data-toggle="tab">Vivienda</a></li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active" id="data">
+              <div id="persona-detalle">
+                  <form class="form-horizontal">
+                    <fieldset id="field" disabled>
+                      <div class="form-group">
+                        <label for="rut" class="col-sm-2 control-label">RUT</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="rut" placeholder="RUT sin dígito verificador">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="nombre" class="col-sm-2 control-label">Nombre</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="nombre" placeholder="Nombre">
+                      <div class="form-group">
+                        <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="nombre" placeholder="Nombre">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="appaterno" class="col-sm-2 control-label">Apellido Paterno</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="appaterno" placeholder="Apellido Paterno">
+                      <div class="form-group">
+                        <label for="appaterno" class="col-sm-2 control-label">Apellido Paterno</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="appaterno" placeholder="Apellido Paterno">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="apmaterno" class="col-sm-2 control-label">Apellido Materno</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="apmaterno" placeholder="Apellido Materno">
+                      <div class="form-group">
+                        <label for="apmaterno" class="col-sm-2 control-label">Apellido Materno</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="apmaterno" placeholder="Apellido Materno">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="sexo" class="col-sm-2 control-label">Sexo</label>
-                      <div class="col-sm-10">
-                        <select class="form-control" id="sexo">
-                          <option>Masculino</option>
-                          <option>Femenino</option>
-                        </select>
+                      <div class="form-group">
+                        <label for="sexo" class="col-sm-2 control-label">Sexo</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" id="sexo">
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="nacimiento" class="col-sm-2 control-label">Fecha de Nacimiento</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="nacimiento" placeholder="aaaa-mm-dd">
+                      <div class="form-group">
+                        <label for="nacimiento" class="col-sm-2 control-label">Fecha de Nacimiento</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="nacimiento" placeholder="aaaa-mm-dd">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="nombre_padre" class="col-sm-2 control-label">Nombre Padre</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="nombre_padre" placeholder="Nombre Padre">
+                      <div class="form-group">
+                        <label for="nombre_padre" class="col-sm-2 control-label">Nombre Padre</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="nombre_padre" placeholder="Nombre Padre">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="nombre_madre" class="col-sm-2 control-label">Nombre Madre</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="nombre_madre" placeholder="Nombre Madre">
+                      <div class="form-group">
+                        <label for="nombre_madre" class="col-sm-2 control-label">Nombre Madre</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="nombre_madre" placeholder="Nombre Madre">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="conyuge" class="col-sm-2 control-label">Cónyuge</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="conyuge" placeholder="Cónyuge">
+                      <div class="form-group">
+                        <label for="conyuge" class="col-sm-2 control-label">Cónyuge</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="conyuge" placeholder="Cónyuge">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="telefono" placeholder="Teléfono">
+                      <div class="form-group">
+                        <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="telefono" placeholder="Teléfono">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="correo" class="col-sm-2 control-label">Correo</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="correo" placeholder="Correo">
+                      <div class="form-group">
+                        <label for="correo" class="col-sm-2 control-label">Correo</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="correo" placeholder="Correo">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
-                      <div class="col-sm-10">
-                        <select class="form-control" id="nacionalidad">
-                          <option>Chile</option>
-                          <option>Otro</option>
-                        </select>
+                      <div class="form-group">
+                        <label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" id="nacionalidad">
+                            <option>Chile</option>
+                            <option>Otro</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="prais" class="col-sm-2 control-label">Prais</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="prais" placeholder="">
+                      <div class="form-group">
+                        <label for="prais" class="col-sm-2 control-label">Prais</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" id="prais" placeholder="">
+                        </div>
                       </div>
-                    </div>
+                    </fieldset>
                   </form>
-                </fieldset>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="prevision">
+              <form class="form-horizontal">
+                  <fieldset disabled>
+                    <div class="form-group">
+                      <label for="rol" class="col-sm-2 control-label">Rol</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="rol" placeholder="Rol">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="vencimiento_carga" class="col-sm-2 control-label">Vencimiento Carga</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="vencimiento_carga" placeholder="Vencimiento Carga">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="rut_titular" class="col-sm-2 control-label">Rut del Titular</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="rut_titular" placeholder="11111111">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="nombre_titular" class="col-sm-2 control-label">Nombre del Titular</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="nombre_titular" placeholder="Nombre del Titular">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="appat_titular" class="col-sm-2 control-label">Apellido Paterno Titular</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="appat_titular" placeholder="Apellido Paterno">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="apmat_titular" class="col-sm-2 control-label">Apellido Materno Titular</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="apmat_titular" placeholder="Apellido Materno">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="tpr_detalle" class="col-sm-2 control-label">Detalle</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="tpr_detalle" placeholder="Detalle">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="pre_nombre" class="col-sm-2 control-label">Tipo Previsión</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="pre_nombre" placeholder="Tipo Previsión">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="vencimiento_prevision" class="col-sm-2 control-label">Vencimiento Previsión</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" id="vencimiento_prevision" placeholder="aaaa-mm-dd">
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="vivienda">...</div>
           </div>
         </div>
         <div class="modal-footer">
@@ -274,12 +344,14 @@
   <script src="./js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function(){
-        $("#ver").click(function(){
-            $("#modalVer").modal('show');
-        });
         $("#agregar").click(function(){
             $("#modalAgregar").modal('show');
         });
+        $("#editar").click(function(){
+          $("#modalVer").on('shown.bs.modal', function () {
+            $("#field").removeAttr( "disabled" );
+          })
+        })
     });
   </script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
