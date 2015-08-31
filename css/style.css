@@ -6,3 +6,18 @@ body {
 	margin:auto;
 	margin-top: 20px;
 }
+#map{
+    height: 300px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#table-direcciones{
+    margin-top: 10px;
+}
+#add-form{
+    display: none;
+}
+#search-result{
+    display:none;
+    z-index: 100000;
+}
