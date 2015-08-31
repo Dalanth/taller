@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    url_base = "http://tallerbd.azurewebsites.net/backend";
-    //url_base = "http://localhost/slim";
-    
+       
     $.ajax({
         type: "GET",
         url: url_base+"/api/persona",
@@ -13,7 +11,7 @@ $(document).ready(function(){
                 var personas = data.data;
                 for(var i = 0; i < Object.keys(personas).length; i++){
                     var tr = '<tr id="'+personas[i].per_id+'">';
-                    tr += '<th>'+personas[i].per_rut+'</th>';
+                    tr += '<th>'+personas[i].per_rut+'-'+jQuery.calculaDigitoVerificador(personas[i].per_rut+'')+'</th>';
                     tr += '<th>'+personas[i].per_nombre+'</th>';
                     tr += '<th>'+personas[i].per_apellido_pat+'</th>';
                     tr += '<th>'+personas[i].per_apellido_mat+'</th>';
@@ -142,7 +140,7 @@ $(document).ready(function(){
         $.ajax({
             type: "GET",
             url: url_base+"/api/persona/search",
-            data: {rut:$('#search').val()},
+            data: {rut:$('#search').val().split('-')[0]},
             dataType: "json",
             crossDomain: true,
             success: function(data){

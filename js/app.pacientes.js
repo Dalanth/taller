@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    url_base = "http://tallerbd.azurewebsites.net/backend";
-    //url_base = "http://localhost/slim";
-
+    
     $.ajax({
         type: "GET",
         url: url_base+"/api/establecimiento",
@@ -35,7 +33,7 @@ $(document).ready(function(){
                     var pacientes = data.data;
                     for(var i =0; i < Object.keys(pacientes).length; i++){
                         var tr = '<tr>';
-                        tr += '<th>'+pacientes[i].per_rut+'' + jQuery.calculaDigitoVerificador(pacientes[i].per_rut) + '</th>';
+                        tr += '<th>'+pacientes[i].per_rut+'-' + jQuery.calculaDigitoVerificador(pacientes[i].per_rut+'') + '</th>';
                         tr += '<th>'+pacientes[i].per_nombre+'</th>';
                         tr += '<th>'+pacientes[i].per_apellido_pat+'</th>';
                         tr += '<th>'+pacientes[i].per_apellido_mat+'</th>';

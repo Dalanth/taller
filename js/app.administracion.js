@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    url_base = "http://tallerbd.azurewebsites.net/backend";
-    //url_base = "http://localhost/slim";
-    
+        
     $.ajax({
         type: "GET",
         url: url_base+"/api/comuna",
