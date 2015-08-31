@@ -1,21 +1,7 @@
 $(document).ready(function(){
     url_base = "http://tallerbd.azurewebsites.net/backend";
     //url_base = "http://localhost/slim";
-    var lat = 56.946536;
-    var lon = 24.10485;
-    var zoom = 8;
-    $("#map").goMap({
-        scaleControl: true, 
-        maptype: 'ROADMAP', 
-        streetViewControl: false,
-        zoom: zoom,
-        markers: [{
-            id: 'address',
-            latitude: lat, 
-            longitude: lon,
-            draggable: true
-        }]
-    });
+    
     $.ajax({
         type: "GET",
         url: url_base+"/api/persona",
@@ -32,8 +18,13 @@ $(document).ready(function(){
                     tr += '<th>'+personas[i].per_apellido_pat+'</th>';
                     tr += '<th>'+personas[i].per_apellido_mat+'</th>';
                     tr += '<th>'+personas[i].per_fecha_nacimiento+'</th>';
+<<<<<<< HEAD
                     tr += '<th><button class="btn btn-info ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button> ';
                     tr += '<button class="btn ver-prevision">Prevision</button></th>';
+=======
+                    tr += '<th><button class="btn ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button></th>';
+                    tr += '<th><button class="btn ver-direcciones">Direcciones</button></th>';
+>>>>>>> gh-pages
                     tr += '</tr>'
                     $('#personas').append(tr);
                 }
@@ -101,6 +92,10 @@ $(document).ready(function(){
                         }
                     });
                     
+                });
+                $('.ver-direcciones').click(function(){
+                    var idPersona = $(this).parent().parent().attr('id');   
+                    location.href="direcciones.html?idPersona="+idPersona;
                 });
             }
             $('.ver-prevision').click(function(){
