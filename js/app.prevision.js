@@ -94,43 +94,62 @@ $(document).ready(function(){
                     e.preventDefault();
                     if ($('#rol').val() == "carga") {
                         if(confirm("¿Está seguro que desea completar ésta acción?")){
-                            if ($('#rol').val() == prevision.rol) {
-                                $.ajax({
-                                    type: "POST",
-                                    url: url_base+"/api/persona/"+idPersona+"/carga",
-                                    data: { titular: $('#titular').val(),
-                                            vencimiento: $('#vencimiento').val() },
-                                    dataType: "json",
-                                    contentType: "application/json",
-                                    crossDomain: true,
-                                    success: function(data){
-                                        if(data.code == 200){
-                                            location.href = location.pathname+"prevision.html?idPersona="+idPersona;
-                                        }
-                                    },
-                                    failure: function(errMsg) {
-                                        alert(errMsg);
+                            $.ajax({
+                                type: "GET",
+                                url: url_base+"/api/persona/search",
+                                data: {rut:$('#rut_carga_titular').val()},
+                                dataType: "json",
+                                crossDomain: true,
+                                success: function(data){
+                                    if(data.code == 200){
+                                        var personas = data.data;
+                                        for(var i = 0; i < Object.keys(personas).length; i++){
+                                            if ($('#rol').val() == prevision.rol) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: url_base+"/api/persona/"+idPersona+"/carga",
+                                                    data: { titular: personas[i].per_id),
+                                                            vencimiento: $('#vencimiento').val() },
+                                                    dataType: "json",
+                                                    contentType: "application/json",
+                                                    crossDomain: true,
+                                                    success: function(data){
+                                                        if(data.code == 200){
+                                                            location.href = location.pathname+"prevision.html?idPersona="+idPersona;
+                                                        }
+                                                    },
+                                                    failure: function(errMsg) {
+                                                        alert(errMsg);
+                                                    }
+                                                });
+                                            } else {
+                                                $.ajax({
+                                                    type: "PUT",
+                                                    url: url_base+"/api/persona/"+idPersona+"/carga",
+                                                    data: { titular: personas[i].per_id,
+                                                            vencimiento: $('#vencimiento').val() },
+                                                    dataType: "json",
+                                                    contentType: "application/json",
+                                                    crossDomain: true,
+                                                    success: function(data){
+                                                        if(data.code == 200){
+                                                            location.href = location.pathname+"prevision.html?idPersona="+idPersona;
+                                                        }
+                                                    },
+                                                    failure: function(errMsg) {
+                                                        alert(errMsg);
+                                                    }
+                                                });
+                                            }
+                                         }
+                                    } else {
+                                        alert('No hay titular con ese rut');
                                     }
-                                });
-                            } else {
-                                $.ajax({
-                                    type: "PUT",
-                                    url: url_base+"/api/persona/"+idPersona+"/carga",
-                                    data: { titular: $('#titular').val(),
-                                            vencimiento: $('#vencimiento').val() },
-                                    dataType: "json",
-                                    contentType: "application/json",
-                                    crossDomain: true,
-                                    success: function(data){
-                                        if(data.code == 200){
-                                            location.href = location.pathname+"prevision.html?idPersona="+idPersona;
-                                        }
-                                    },
-                                    failure: function(errMsg) {
-                                        alert(errMsg);
-                                    }
-                                });
-                            }
+                                },
+                                failure: function(errMsg) {
+                                    alert(errMsg);
+                                }
+                            });
                         }
                     } else if ($('#rol').val() == "titular") {
                         if ($('#rol').val() == prevision.rol) {
@@ -145,7 +164,7 @@ $(document).ready(function(){
                                 crossDomain: true,
                                 success: function(data){
                                     if(data.code == 200){
-                                        location.href = location.pathname;
+                                        location.href = location.pathname+"prevision.html?idPersona="+idPersona;
                                     }
                                 },
                                 failure: function(errMsg) {
@@ -199,26 +218,45 @@ $(document).ready(function(){
                 $('#asignar-prev').click(function(e){
                     e.preventDefault();
                     if ($('#rol').val() == "carga") {
-                        if(confirm("¿Está seguro que desea completar ésta acción?")){
-                            //post persona carga
-                            $.ajax({
-                                type: "POST",
-                                url: url_base+"/api/persona/"+idPersona+"/carga",
-                                data: { titular: $('#titular').val(),
-                                        vencimiento: $('#vencimiento').val() },
-                                dataType: "json",
-                                contentType: "application/json",
-                                crossDomain: true,
-                                success: function(data){
-                                    if(data.code == 200){
-                                        location.href = location.pathname+"prevision.html?idPersona="+idPersona;
+                        $.ajax({
+                            type: "GET",
+                            url: url_base+"/api/persona/search",
+                            data: {rut:$('#rut_carga_titular').val()},
+                            dataType: "json",
+                            crossDomain: true,
+                            success: function(data){
+                                if(data.code == 200){
+                                    var personas = data.data;
+                                    for(var i = 0; i < Object.keys(personas).length; i++){
+                                        if(confirm("¿Está seguro que desea completar ésta acción?")){
+                                            //post persona carga
+                                            $.ajax({
+                                                type: "POST",
+                                                url: url_base+"/api/persona/"+idPersona+"/carga",
+                                                data: { titular: personas[i].per_id,
+                                                        vencimiento: $('#vencimiento').val() },
+                                                dataType: "json",
+                                                contentType: "application/json",
+                                                crossDomain: true,
+                                                success: function(data){
+                                                    if(data.code == 200){
+                                                        location.href = location.pathname+"prevision.html?idPersona="+idPersona;
+                                                    }
+                                                },
+                                                failure: function(errMsg) {
+                                                    alert(errMsg);
+                                                }
+                                            });  
+                                        }
                                     }
-                                },
-                                failure: function(errMsg) {
-                                    alert(errMsg);
+                                } else {
+                                    alert('No hay titular con ese rut');
                                 }
-                            });  
-                        }
+                            },
+                            failure: function(errMsg) {
+                                alert(errMsg);
+                            }
+                        });
                     } else if ($('#rol').val() == "titular") {
                         if(confirm("¿Está seguro que desea completar ésta acción?")){
                             //post persona titular
@@ -241,6 +279,49 @@ $(document).ready(function(){
                             });
                         }
                     }
+                });
+                $('#cargaEnviar').click(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET",
+                        url: url_base+"/api/persona/search",
+                        data: {rut:$('#rut_carga_titular').val()},
+                        dataType: "json",
+                        crossDomain: true,
+                        success: function(data){
+                            if(data.code == 200){
+                                var personas = data.data;
+                                for(var i = 0; i < Object.keys(personas).length; i++){
+                                    if(confirm("¿Está seguro que desea completar ésta acción?")){
+                                        //post persona carga
+                                        $.ajax({
+                                            type: "POST",
+                                            url: url_base+"/api/persona/"+idPersona+"/carga",
+                                            data: { titular: personas[i].per_id,
+                                                    vencimiento: $('#vencimiento').val() },
+                                            dataType: "json",
+                                            contentType: "application/json",
+                                            crossDomain: true,
+                                            success: function(data){
+                                                if(data.code == 200){
+                                                    location.href = location.pathname+"prevision.html?idPersona="+idPersona;
+                                                }
+                                            },
+                                            failure: function(errMsg) {
+                                                alert(errMsg);
+                                            }
+                                        });  
+                                    }
+                                }
+                            }
+                            else {
+                                alert('No hay titular con ese rut');
+                            }
+                        },
+                        failure: function(errMsg) {
+                            alert(errMsg);
+                        }
+                    });
                 });
             }
         },
