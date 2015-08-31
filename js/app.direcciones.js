@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    //url_base = "http://tallerbd.azurewebsites.net/backend";
-    url_base = "http://localhost/slim";
+    url_base = "http://tallerbd.azurewebsites.net/backend";
+    //url_base = "http://localhost/slim";
     var idPersona = location.href.split('?')[1].split('=')[1];
     var lat = -39.850885;
     var lon = -73.213073;
@@ -210,7 +210,7 @@ $(document).ready(function(){
     });
     $('#aceptar').click(function(e){
         e.preventDefault();
-        if($('#ciudad').val() != "" && $('#calle').val() != "" && $('#numero').val() != ""){
+        if($('#ciudad').val() != "" && $('#calle').val() != "" && $('#numero').val() != "" && $('#calle').attr('calle-id') != ""){
             var departamento = $('#departamento').val();
             if(departamento == "") departamento = null;
             var latlon = $($.goMap.mapId).data('address').getPosition().toUrlValue();
