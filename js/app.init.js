@@ -110,24 +110,26 @@ $(document).ready(function(){
             type: "POST",
             url: url_base+"/api/persona",
             data: {
-                per_nombre: $('#add-nombre').val(),
-                per_apellido_pat: $('#add-appaterno').val(),
-                per_apellido_mat: $('#add-apmaterno').val(),
-                per_sexo_id: $('#add-sexo').val(),
-                per_nacimiento: $('#add-nacimiento').val(),
-                per_nombre_padre: $('#add-nombre_padre').val(),
-                per_nombre_madre: $('#add-nombre_madre').val(),
-                per_rut: $('#add-rut').val(),
-                per_conyuge: $('#add-conyuge').val(),
-                per_prais: $('#add-prais').val(),
-                per_telefono: $('#add-telefono').val(),
-                per_correo: $('#add-correo').val(),
-                per_nacionalidad_id: $('#add-nacionalidad').val()
+                nombre: $('#add-nombre').val(),
+                appaterno: $('#add-appaterno').val(),
+                apmaterno: $('#add-apmaterno').val(),
+                sexo: $('#add-sexo').val(),
+                nacimiento: $('#add-nacimiento').val(),
+                nombre_padre: $('#add-nombre_padre').val(),
+                nombre_madre: $('#add-nombre_madre').val(),
+                rut: $('#add-rut').val(),
+                conyuge: $('#add-conyuge').val(),
+                prais: $('#add-prais').val(),
+                telefono: $('#add-telefono').val(),
+                correo: $('#add-correo').val(),
+                nacionalidad: $('#add-nacionalidad').val()
             },
             dataType: "json",
             crossDomain: true,
             success: function(data){
-                alert("derp");
+                if(data.code == 200){
+                    $('#reload').trigger('click');
+                }
             },
             failure: function(errMsg) {
                 alert(errMsg);
