@@ -18,8 +18,9 @@ $(document).ready(function(){
                     tr += '<th>'+personas[i].per_apellido_pat+'</th>';
                     tr += '<th>'+personas[i].per_apellido_mat+'</th>';
                     tr += '<th>'+personas[i].per_fecha_nacimiento+'</th>';
-                    tr += '<th><button class="btn btn-info ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button> ';
-                    tr += '<button class="btn ver-prevision">Prevision</button> ';
+                    tr += '<th><button class="btn btn-info ver-persona" data-toggle="modal" data-target="#modalVer">Ver Detalle</button> ';
+                    tr += '<button class="btn btn-success ver-prevision">Previsión</button> ';
+                    tr += '<button class="btn btn-warning ver-direcciones">Direcciones</button></th>';
                     tr += '</tr>'
                     $('#personas').append(tr);
                 }
@@ -92,11 +93,11 @@ $(document).ready(function(){
                     var idPersona = $(this).parent().parent().attr('id');   
                     location.href="direcciones.html?idPersona="+idPersona;
                 });
+                $('.ver-prevision').click(function(){
+                    var idPersona = $(this).parent().parent().attr('id');
+                    location.href="prevision.html?idPersona="+idPersona;
+                });
             }
-            $('.ver-prevision').click(function(){
-                var idPersona = $(this).parent().parent().attr('id');   
-                location.href="prevision.html?idPersona="+idPersona;
-            });
         },
         failure: function(errMsg) {
             alert(errMsg);
@@ -168,3 +169,4 @@ $(document).ready(function(){
         location.href = location.pathname;
     });
 });
+
