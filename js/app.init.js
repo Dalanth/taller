@@ -18,13 +18,8 @@ $(document).ready(function(){
                     tr += '<th>'+personas[i].per_apellido_pat+'</th>';
                     tr += '<th>'+personas[i].per_apellido_mat+'</th>';
                     tr += '<th>'+personas[i].per_fecha_nacimiento+'</th>';
-<<<<<<< HEAD
                     tr += '<th><button class="btn btn-info ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button> ';
-                    tr += '<button class="btn ver-prevision">Prevision</button></th>';
-=======
-                    tr += '<th><button class="btn ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button></th>';
-                    tr += '<th><button class="btn ver-direcciones">Direcciones</button></th>';
->>>>>>> gh-pages
+                    tr += '<button class="btn ver-prevision">Prevision</button> ';
                     tr += '</tr>'
                     $('#personas').append(tr);
                 }
