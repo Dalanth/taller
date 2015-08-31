@@ -70,9 +70,8 @@
           <h4 class="modal-title" id="modalVerLabel">Ver Persona</h4>
         </div>
         <div class="modal-body">
-          <div id="persona-detalle">
-              <form class="form-horizontal disabled">
-                <fieldset disabled>
+            <div id="persona-detalle">
+                <form class="form-horizontal">
                     <div class="form-group">
                       <label for="rut" class="col-sm-2 control-label">RUT</label>
                       <div class="col-sm-10">
@@ -101,8 +100,8 @@
                       <label for="sexo" class="col-sm-2 control-label">Sexo</label>
                       <div class="col-sm-10">
                         <select class="form-control" id="sexo">
-                          <option>Masculino</option>
-                          <option>Femenino</option>
+                          <option value="1">Femenino</option>
+                          <option value="2">Masculino</option>
                         </select>
                       </div>
                     </div>
@@ -146,8 +145,8 @@
                       <label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
                       <div class="col-sm-10">
                         <select class="form-control" id="nacionalidad">
-                          <option>Chile</option>
-                          <option>Otro</option>
+                          <option value="1">Chile</option>
+                          <option value="2">Otro</option>
                         </select>
                       </div>
                     </div>
@@ -157,12 +156,12 @@
                         <input class="form-control" id="prais" placeholder="">
                       </div>
                     </div>
-                  </form>
-                </fieldset>
-          </div>
+                </form>
+            </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="guardar">Aplicar Cambios</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
@@ -178,94 +177,94 @@
                 <div class="modal-body">
                   <form class="form-horizontal">
                     <div class="form-group">
-                      <label for="rut" class="col-sm-2 control-label">RUT</label>
+                      <label for="add-rut" class="col-sm-2 control-label">RUT</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="rut" placeholder="RUT sin dígito verificador">
+                        <input class="form-control" id="add-rut" placeholder="RUT sin dígito verificador">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+                      <label for="add-nombre" class="col-sm-2 control-label">Nombre</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="nombre" placeholder="Nombre">
+                        <input class="form-control" id="add-nombre" placeholder="Nombre">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="appaterno" class="col-sm-2 control-label">Apellido Paterno</label>
+                      <label for="add-appaterno" class="col-sm-2 control-label">Apellido Paterno</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="appaterno" placeholder="Apellido Paterno">
+                        <input class="form-control" id="add-appaterno" placeholder="Apellido Paterno">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="apmaterno" class="col-sm-2 control-label">Apellido Materno</label>
+                      <label for="add-apmaterno" class="col-sm-2 control-label">Apellido Materno</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="apmaterno" placeholder="Apellido Materno">
+                        <input class="form-control" id="add-apmaterno" placeholder="Apellido Materno">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="sexo" class="col-sm-2 control-label">Sexo</label>
+                      <label for="add-sexo" class="col-sm-2 control-label">Sexo</label>
                       <div class="col-sm-10">
-                        <select class="form-control" id="sexo">
-                          <option>Masculino</option>
-                          <option>Femenino</option>
+                        <select class="form-control" id="add-sexo">
+                          <option value="1">Femenino</option>
+                          <option value="2">Masculino</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nacimiento" class="col-sm-2 control-label">Fecha de Nacimiento</label>
+                      <label for="add-nacimiento" class="col-sm-2 control-label">Fecha de Nacimiento</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="nacimiento" placeholder="aaaa-mm-dd">
+                        <input class="form-control" id="add-nacimiento" placeholder="aaaa-mm-dd">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nombre_padre" class="col-sm-2 control-label">Nombre Padre</label>
+                      <label for="add-nombre_padre" class="col-sm-2 control-label">Nombre Padre</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="nombre_padre" placeholder="Nombre Padre">
+                        <input class="form-control" id="add-nombre_padre" placeholder="Nombre Padre">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nombre_madre" class="col-sm-2 control-label">Nombre Madre</label>
+                      <label for="add-nombre_madre" class="col-sm-2 control-label">Nombre Madre</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="nombre_madre" placeholder="Nombre Madre">
+                        <input class="form-control" id="add-nombre_madre" placeholder="Nombre Madre">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="conyuge" class="col-sm-2 control-label">Cónyuge</label>
+                      <label for="add-conyuge" class="col-sm-2 control-label">Cónyuge</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="conyuge" placeholder="Cónyuge">
+                        <input class="form-control" id="add-conyuge" placeholder="Cónyuge">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
+                      <label for="add-telefono" class="col-sm-2 control-label">Teléfono</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="telefono" placeholder="Teléfono">
+                        <input class="form-control" id="add-telefono" placeholder="Teléfono">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="correo" class="col-sm-2 control-label">Correo</label>
+                      <label for="add-correo" class="col-sm-2 control-label">Correo</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="correo" placeholder="Correo">
+                        <input class="form-control" id="add-correo" placeholder="Correo">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
+                      <label for="add-nacionalidad" class="col-sm-2 control-label">Nacionalidad</label>
                       <div class="col-sm-10">
-                        <select class="form-control" id="nacionalidad">
-                          <option>Chile</option>
-                          <option>Otro</option>
+                        <select class="form-control" id="add-nacionalidad">
+                          <option value="1">Chile</option>
+                          <option value="2">Otro</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="pais" class="col-sm-2 control-label">Praiss</label>
+                      <label for="add-pais" class="col-sm-2 control-label">Prais</label>
                       <div class="col-sm-10">
-                        <input class="form-control" id="prais" placeholder="">
+                        <input class="form-control" id="add-prais" placeholder="">
                       </div>
                     </div>
                   </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" id="AgregarEnviar" class="btn btn-primary" data-dismiss="modal">Agregar</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
               </div>
             </div>
@@ -274,16 +273,6 @@
 
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function(){
-        $("#ver").click(function(){
-            $("#modalVer").modal('show');
-        });
-        $("#agregar").click(function(){
-            $("#modalAgregar").modal('show');
-        });
-    });
-  </script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow35.js"></script>
   <script src="js/app.init.js" type="text/javascript"></script>
