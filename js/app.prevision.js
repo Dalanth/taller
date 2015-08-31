@@ -11,18 +11,26 @@ $(document).ready(function(){
         crossDomain: true,
         success: function(data){
             if(data.code == 200){
-                $('#rol').val(data.data[0].rol);
-                if (data.data[0].rol == "carga") {
+                try {
+                    var prevision = data.data[0];
+                    $('#rol').val(prevision.rol);
+                }
+                catch(err) {
+                    var prevision = data.data;
+                    alert(prevision.rol);
+                }
+                    
+                if (prevision.rol == "carga") {
                     $('#rol').prop( "disabled", true );
                     $('.form-carga').removeClass( "hidden" );
                     $('#save-prev').removeClass( "hidden" );
-                    $('#vencimiento_carga').val(data.data[0].vencimiento_carga);
-                    $('#rut_titular').val(data.data[0].rut_titular);
-                    $('#nombre_titular').val(data.data[0].nombre_titular);
-                    $('#appat_titular').val(data.data[0].appat_titular);
-                    $('#apmat_titular').val(data.data[0].apmat_titular);
+                    $('#vencimiento_carga').val(prevision.vencimiento_carga);
+                    $('#rut_titular').val(prevision.rut_titular);
+                    $('#nombre_titular').val(prevision.nombre_titular);
+                    $('#appat_titular').val(prevision.appat_titular);
+                    $('#apmat_titular').val(prevision.apmat_titular);
                     $('#table-cargas').addClass( "hidden" );
-                } else if (data.data[0].rol == "titular") {
+                } else if (prevision.rol == "titular") {
                     $('#rol').prop( "disabled", true );
                     $('#table-cargas').removeClass( "hidden" );
                     $('.form-carga').addClass( "hidden" );
@@ -32,9 +40,9 @@ $(document).ready(function(){
                 } else {
                     $('#asignar-prev').removeClass( "hidden" );
                 }
-                $('#tpr_detalle').val(data.data[0].tpr_detalle);
-                $('#pre_nombre').val(data.data[0].pre_nombre);
-                $('#vencimiento_prevision').val(data.data[0].vencimiento_prevision);
+                $('#tpr_detalle').val(prevision.tpr_detalle);
+                $('#pre_nombre').val(prevision.pre_nombre);
+                $('#vencimiento_prevision').val(prevision.vencimiento_prevision);
                 $.ajax({
                     type: "GET",
                     url: url_base+"/api/persona/"+idPersona+"/carga",
@@ -86,7 +94,7 @@ $(document).ready(function(){
                     e.preventDefault();
                     if ($('#rol').val() == "carga") {
                         if(confirm("¿Está seguro que desea completar ésta acción?")){
-                            if ($('#rol').val() == data.data[0].rol) {
+                            if ($('#rol').val() == prevision.rol) {
                                 $.ajax({
                                     type: "POST",
                                     url: url_base+"/api/persona/"+idPersona+"/carga",
@@ -125,7 +133,7 @@ $(document).ready(function(){
                             }
                         }
                     } else if ($('#rol').val() == "titular") {
-                        if ($('#rol').val() == data.data[0].rol) {
+                        if ($('#rol').val() == prevision.rol) {
                             //put persona titular
                             $.ajax({
                                 type: "PUT",

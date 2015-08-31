@@ -18,13 +18,14 @@ $(document).ready(function(){
                     tr += '<th>'+personas[i].per_apellido_pat+'</th>';
                     tr += '<th>'+personas[i].per_apellido_mat+'</th>';
                     tr += '<th>'+personas[i].per_fecha_nacimiento+'</th>';
-                    tr += '<th><button class="btn btn-info ver-persona" data-toggle="modal" data-target="#modalVer">Ver Detalle</button> ';
-                    tr += '<button class="btn btn-success ver-prevision">Previsión</button> ';
-                    tr += '<button class="btn btn-warning ver-direcciones">Direcciones</button></th>';
+                    tr += '<th><button class="btn btn-info ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button> ';
+                    tr += '<button class="btn btn-default ver-prevision">Previsión</button> ';
+                    tr += '<button class="btn btn-default ver-direcciones">Direcciones</button></th>';
                     tr += '</tr>'
                     $('#personas').append(tr);
                 }
-                $('.ver-persona').click(function(){
+                $('.ver-persona').click(function(e){
+                    e.preventDefault();
                     var idPersona = $(this).parent().parent().attr('id');                    
                     $.ajax({
                         type: "GET",
@@ -103,7 +104,8 @@ $(document).ready(function(){
             alert(errMsg);
         }
     });
-    $('#AgregarEnviar').click(function(){              
+    $('#AgregarEnviar').click(function(e){
+        e.preventDefault();
         $.ajax({
             type: "POST",
             url: url_base+"/api/persona",
@@ -133,7 +135,8 @@ $(document).ready(function(){
         });
         
     });
-    $('#buscar').click(function(){
+    $('#buscar').click(function(e){
+        e.preventDefault();
         $.ajax({
             type: "GET",
             url: url_base+"/api/persona/search",
