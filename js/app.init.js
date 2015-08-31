@@ -32,8 +32,8 @@ $(document).ready(function(){
                     tr += '<th>'+personas[i].per_apellido_pat+'</th>';
                     tr += '<th>'+personas[i].per_apellido_mat+'</th>';
                     tr += '<th>'+personas[i].per_fecha_nacimiento+'</th>';
-                    tr += '<th><button class="btn btn-default ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button> ';
-                    tr += '<button class="btn btn-info" id="editar-persona" data-toggle="modal" data-target="#modalVer">Editar</button></th>';
+                    tr += '<th><button class="btn btn-info ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button> ';
+                    tr += '<button class="btn ver-prevision">Prevision</button></th>';
                     tr += '</tr>'
                     $('#personas').append(tr);
                 }
@@ -61,29 +61,38 @@ $(document).ready(function(){
                                 $('#prais').val(data.data[0].per_prais);
                                 $('#telefono').val(data.data[0].per_telefono);
                                 $('#correo').val(data.data[0].per_correo);
-                                // pestaña prevision
-                                $.ajax({
-                                    type: "GET",
-                                    url: url_base+"/api/persona/"+idPersona+"/prevision",
-                                    data: { },
-                                    dataType: "json",
-                                    crossDomain: true,
-                                    success: function(data){
-                                        if(data.code == 200){
-                                            $('#rol').val(data.data[0].rol);
-                                            $('#vencimiento_carga').val(data.data[0].vencimiento_carga);
-                                            $('#rut_titular').val(data.data[0].rut_titular);
-                                            $('#nombre_titular').val(data.data[0].nombre_titular);
-                                            $('#appat_titular').val(data.data[0].appat_titular);
-                                            $('#apmat_titular').val(data.data[0].apmat_titular);
-                                            $('#tpr_detalle').val(data.data[0].tpr_detalle);
-                                            $('#pre_nombre').val(data.data[0].pre_nombre);
-                                            $('#vencimiento_prevision').val(data.data[0].vencimiento_prevision);
+                                
+                                $('#guardar').click(function(){                  
+                                    $.ajax({
+                                        type: "PUT",
+                                        url: url_base+"/api/persona/"+idPersona,
+                                        data: {
+                                            per_nombre: $('#nombre').val(),
+                                            per_apellido_pat: $('#appaterno').val(),
+                                            per_apellido_mat: $('#apmaterno').val(),
+                                            per_sexo_id: $('#sexo').val(),
+                                            per_nacimiento: $('#nacimiento').val(),
+                                            per_nombre_padre: $('#nombre_padre').val(),
+                                            per_nombre_madre: $('#nombre_madre').val(),
+                                            per_rut: $('#rut').val(),
+                                            per_conyuge: $('#conyuge').val(),
+                                            per_prais: $('#prais').val(),
+                                            per_telefono: $('#telefono').val(),
+                                            per_correo: $('#correo').val(),
+                                            per_nacionalidad_id: $('#nacionalidad').val()
+                                            },
+                                        dataType: "json",
+                                        crossDomain: true,
+                                        success: function(data){
+                                            if(data.code == 200){
+                                                alert("Datos actualizados");
+                                            }
+                                        },
+                                        failure: function(errMsg) {
+                                            alert(errMsg);
                                         }
-                                    },
-                                    failure: function(errMsg) {
-                                        alert(errMsg);
-                                    }
+                                    });
+                                    
                                 });
                             }
                         },
@@ -94,6 +103,10 @@ $(document).ready(function(){
                     
                 });
             }
+            $('.ver-prevision').click(function(){
+                var idPersona = $(this).parent().parent().attr('id');   
+                location.href="prevision.html?idPersona="+idPersona;
+            });
         },
         failure: function(errMsg) {
             alert(errMsg);
@@ -102,25 +115,26 @@ $(document).ready(function(){
     $('#AgregarEnviar').click(function(){              
         $.ajax({
             type: "POST",
-            url: url_base+"/api/persona/",
+            url: url_base+"/api/persona",
             data: {
-                per_nombre: $('#nombre').val(),
-                per_apellido_pat: $('#appaterno').val(),
-                per_apellido_mat: $('#apmaterno').val(),
-                per_sexo_id: $('#sexo').val(),
-                per_nacimiento: $('#nacimiento').val(),
-                per_nombre_padre: $('#nombre_padre').val(),
-                per_nombre_madre: $('#nombre_madre').val(),
-                per_rut: $('#rut').val(),
-                per_conyuge: $('#conyuge').val(),
-                per_prais: $('#prais').val(),
-                per_telefono: $('#telefono').val(),
-                per_correo: $('#correo').val(),
-                per_nacionalidad_id: $('#nacionalidad').val()
+                per_nombre: $('#add-nombre').val(),
+                per_apellido_pat: $('#add-appaterno').val(),
+                per_apellido_mat: $('#add-apmaterno').val(),
+                per_sexo_id: $('#add-sexo').val(),
+                per_nacimiento: $('#add-nacimiento').val(),
+                per_nombre_padre: $('#add-nombre_padre').val(),
+                per_nombre_madre: $('#add-nombre_madre').val(),
+                per_rut: $('#add-rut').val(),
+                per_conyuge: $('#add-conyuge').val(),
+                per_prais: $('#add-prais').val(),
+                per_telefono: $('#add-telefono').val(),
+                per_correo: $('#add-correo').val(),
+                per_nacionalidad_id: $('#add-nacionalidad').val()
             },
             dataType: "json",
             crossDomain: true,
             success: function(data){
+                alert("derp");
             },
             failure: function(errMsg) {
                 alert(errMsg);
@@ -155,27 +169,12 @@ $(document).ready(function(){
                     $("#aviso").append('<div class="alert alert-warning" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>No hay resultados</div>')
                 }
             },
-/*            if(data.code == 200){
-                    var personas = data.data;
-                    for(var i = 0; i < Object.keys(personas).length; i++){
-                        var tr = '<tr id="'+personas[i].per_id+'">';
-                        tr += '<th>'+personas[i].per_rut+'</th>';
-                        tr += '<th>'+personas[i].per_nombre+'</th>';
-                        tr += '<th>'+personas[i].per_apellido_pat+'</th>';
-                        tr += '<th>'+personas[i].per_apellido_mat+'</th>';
-                        tr += '<th>'+personas[i].per_fecha_nacimiento+'</th>';
-                        tr += '<th><button class="btn ver-persona" data-toggle="modal" data-target="#modalVer">Ver</button></th>';
-                        tr += '</tr>'
-                        $('#personas').append(tr);
-                    }
-                }
-            },*/
             failure: function(errMsg) {
-                $("#test").html("derp");
+                alert(errMsg);
             }
         });
     });
     $("#reload").click(function(){
-            location.href = location.pathname;
-        });
+        location.href = location.pathname;
+    });
 });
